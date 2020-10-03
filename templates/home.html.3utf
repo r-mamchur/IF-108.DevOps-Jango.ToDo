@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">Boards</li>
+{% endblock %}
+
+{% block content %}
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th></th>
+        <th>Posts</th>
+        <th>Topics</th>
+        <th>State</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for todo in todoes %}
+        <tr>
+          <td>
+            <small class="text-muted d-block">{{ todo.title }}</small>
+          </td>
+          <td class="align-middle">{{ todo.created_at }}</td>
+          <td class="align-middle">{{ todo.due }}</td>
+          <td class="align-middle">{{ todo.state }}</td>
+          <td></td>
+<!--          <p>{{ todo.details|linebreaksbr }}</p>    -->
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

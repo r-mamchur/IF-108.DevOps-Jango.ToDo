@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">Список:</li>
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    <a class="btn btn-primary" href="{% url 'todo_new' %}">Add task</a>
+{% endif %}
+
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th></th>
+        <th>Відкрито</th>
+        <th>Зробити до</th>
+        <th>Cтан</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for todo in todoes %}
+        <tr>
+          <td>
+            {% if user.is_authenticated %}
+               <a href="{% url 'todo_edit' todo.pk %}">{{ todo.title }}</a>
+            {% else %}
+               <a href="{% url 'todo_detail' todo.pk %}">{{ todo.title }}</a>
+            {% endif %}
+            <small class="text-muted d-block">{{ todo.details }}</small>
+          </td>
+          <td class="align-middle">{{ todo.created_at }}</td>
+          <td class="align-middle">{{ todo.due }}</td>
+          <td class="align-middle">{{ todo.state }}</td>
+          <td></td>
+<!--          <p>{{ todo.details|linebreaksbr }}</p>    -->
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

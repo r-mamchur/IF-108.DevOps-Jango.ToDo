@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">Список:</li>
+{% endblock %}
+
+{% block content %}
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th></th>
+        <th>Відкрито</th>
+        <th>Зробити до</th>
+        <th>Cтан</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for todo in todoes %}
+        <tr>
+          <td>
+            <a href="{% url 'todo_detail' todo.pk %}">{{ todo.title }}</a>
+            <small class="text-muted d-block">{{ todo.details }}</small>
+          </td>
+          <td class="align-middle">{{ todo.created_at }}</td>
+          <td class="align-middle">{{ todo.due }}</td>
+          <td class="align-middle">{{ todo.state }}</td>
+          <td></td>
+<!--          <p>{{ todo.details|linebreaksbr }}</p>    -->
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

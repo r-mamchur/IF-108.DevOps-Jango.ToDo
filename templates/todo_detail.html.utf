@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  {{ todo.title }} - {{ block.super }}
+{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'home' %}"></a></li>
+  <li class="breadcrumb-item active">{{ todo.title }}</li>
+{% endblock %}
+
+
+{% block content %}
+    <div class="post">
+            <div class="date">
+                {{ todo.created_at }}
+            </div>
+        <h1>{{ todo.title }}</h1>
+        <p>{{ todo.due }}</p>
+        <p>{{ todo.state }}</p>
+        <p>{{ todo.details|linebreaksbr }}</p>
+    </div>
+{% endblock %}
